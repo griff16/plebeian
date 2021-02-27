@@ -5,7 +5,7 @@ import { firebase } from "../../firebase/config";
 import { AuthContext } from "../../../App";
 import styles from "./styles";
 
-export default function LoginScreen(props) {
+export default function LoginScreen({ navigation }) {
     // preset fields to login
     const [email, setEmail] = useState("test@gmail.com");
     const [password, setPassword] = useState("qwerty1!");
@@ -15,7 +15,6 @@ export default function LoginScreen(props) {
     const onFooterLinkPress = () => {
         navigation.navigate("Signup");
     };
-
 
     const onLoginPress = () => {
         firebase
@@ -35,7 +34,7 @@ export default function LoginScreen(props) {
                         }
                         const user = firestoreDocument.data();
                         setUser(user);
-                        props.navigation.navigate("Home", { user });
+                        navigation.navigate("Home", { user });
                     })
                     .catch((error) => {
                         alert(error);
