@@ -18,7 +18,6 @@ export default function App() {
 
 
     useEffect(() => {
-        setLoading(true);
         const usersRef = firebase.firestore().collection("users");
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
