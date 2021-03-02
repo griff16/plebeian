@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { AuthContext } from "../../../App";
 import { firebase } from "../../firebase/config";
@@ -7,7 +7,7 @@ import styles from "./styles";
 
 export default function HomeScreen(props) {
     // fields
-    const [isLoggedin, setIsLoggedIn] = useState(false);
+    // const [isLoggedin, setIsLoggedIn] = useState(false);
     const { user, setUser } = useContext(AuthContext);
 
     const onSignoutPress = () => {  // sign out feature

@@ -1,13 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { firebase } from "./src/firebase/config";
 import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 import HomeScreen from "./src/screens/HomeScreen/HomeScreen";
 import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
-import LoadingScreen from "./src/screens/LoadingScreen/LoadingScreen";
+// import LoadingScreen from "./src/screens/LoadingScreen/LoadingScreen";
 
 const Stack = createStackNavigator();
 export const AuthContext = React.createContext(null);
