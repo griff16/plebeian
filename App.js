@@ -5,6 +5,7 @@ import { firebase } from "./src/firebase/config";
 import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 import HomeScreen from "./src/screens/HomeScreen/HomeScreen";
 import SignupScreen from "./src/screens/SignupScreen/SignupScreen";
+import AppNavigator, { Tab } from './src/navigations/AppNavigator'
 // import LoadingScreen from "./src/screens/LoadingScreen/LoadingScreen";
 
 const Stack = createStackNavigator();
@@ -40,7 +41,8 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator>
                     {user ? (
-                        <Stack.Screen name="Home" component={HomeScreen} />
+                        // <Stack.Screen name="Home" component={HomeScreen} />
+                        <Stack.Screen name="AppHome" component={AppNavigator} />
                     ) : (
                         <>
                             <Stack.Screen

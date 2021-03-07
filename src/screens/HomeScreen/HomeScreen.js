@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { AuthContext } from "../../../App";
 import { firebase } from "../../firebase/config";
-// import onSignoutPress from '../../utls/onSignoutPress'
 import styles from "./styles";
 
 export default function HomeScreen(props) {
