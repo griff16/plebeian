@@ -1,8 +1,6 @@
 import { firebase } from "../firebase/config";
-// { navigation, setUser }
 
 export default function utlSignout(navigation, setUser) {
-
     firebase
         .auth()
         .signOut()
