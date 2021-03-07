@@ -15,6 +15,8 @@ export default function FloorScreen(props) {
             <Text>This is Floor Screen!</Text>
             <View>{user && <Text>Is Logged IN as {user.email}</Text>}</View>
 
+
+            {/* this is sign out feature for debug purpose */}
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => utlSignout(props.navigation, setUser)}

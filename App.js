@@ -29,7 +29,7 @@ export default function App() {
                         alert(error);
                     });
             } else {
-                console.log('no user');
+                console.log('not logged into any user');
             }
         });
     }, []);
