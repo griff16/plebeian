@@ -4,7 +4,7 @@ import { AuthContext } from "../../../App";
 import { firebase } from "../../firebase/config";
 import styles from "./styles";
 
-export default function HomeScreen(props) {
+export default function FloorScreen(props) {
     // fields
     // const [isLoggedin, setIsLoggedIn] = useState(false);
     const { user, setUser } = useContext(AuthContext);
@@ -25,7 +25,7 @@ export default function HomeScreen(props) {
 
     return (
         <View style={styles}>
-            <Text>This is Home Screen!</Text>
+            <Text>This is Floor Screen!</Text>
             <View>{user && <Text>Is Logged IN as {user.email}</Text>}</View>
 
             {/* <Text style={styles.buttonTitle}>{console.log(props)}</Text> */}
