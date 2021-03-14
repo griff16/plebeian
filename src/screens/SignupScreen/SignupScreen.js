@@ -1,63 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import styles from "./styles";
+
 import { firebase } from "../../firebase/config";
-import { AuthContext } from "../../../App";
+import { signupPress } from "../../utilities/authUtls";
+import styles from "./styles";
 
 export default function SignupScreen({ navigation }) {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const { user, setUser } = useContext(AuthContext);
-
-    const onFooterLinkPress = () => {
-        navigation.navigate("Login");
-    };
-
-    // create account firebase logic
-    const onRegisterPress = () => {
-        if (password !== confirmPassword) {
-            alert("Passwords don't match.");
-            return;
-        }
-
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((response) => {
-                const uid = response.user.uid;
-                const data = {
-                    id: uid,
-                    email,
-                    fullName,
-                };
-
-                const usersRef = firebase.firestore().collection("users");
-                usersRef
-                    .doc(uid)
-                    .set(data)
-                    .then(() => {
-                        setUser(data); // set up the user data
-                        navigation.navigate("Home", { user: data });
-                    })
-                    .catch((error) => {
-                        alert(error);
-                    });
-            })
-            .catch((error) => {
-                // handle error
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                if (errorCode == "auth/weak-password") {
-                    alert("The password is too weak.");
-                } else {
-                    alert(errorMessage);
-                }
-                console.log(error);
-            });
-    };
 
     return (
         <View style={styles.container}>
@@ -69,6 +22,7 @@ export default function SignupScreen({ navigation }) {
                     style={styles.logo}
                     source={require("../../../assets/icon.png")}
                 />
+
                 <TextInput
                     style={styles.input}
                     placeholder="Full Name"
@@ -78,6 +32,7 @@ export default function SignupScreen({ navigation }) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+
                 <TextInput
                     style={styles.input}
                     placeholder="E-mail"
@@ -87,6 +42,7 @@ export default function SignupScreen({ navigation }) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+
                 <TextInput
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
@@ -97,6 +53,7 @@ export default function SignupScreen({ navigation }) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+
                 <TextInput
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
@@ -107,17 +64,30 @@ export default function SignupScreen({ navigation }) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={onRegisterPress}
+                    onPress={() =>
+                        signupPress(
+                            navigation,
+                            dispatch,
+                            email,
+                            password,
+                            confirmPassword,
+                            fullName
+                        )
+                    }
                 >
                     <Text style={styles.buttonTitle}>Create account</Text>
                 </TouchableOpacity>
+
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>
                         Already got an account?{" "}
                         <Text
-                            onPress={onFooterLinkPress}
+                            onPress={() => {
+                                navigation.navigate("Login");
+                            }}
                             style={styles.footerLink}
                         >
                             Log in

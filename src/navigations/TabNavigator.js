@@ -1,14 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
+
 import FloorScreen from "../screens/FloorScreen/FloorScreen";
-import SearchScreen from "../screens/SearchScreen/SearchScreen";
-import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
 import FriendsScreen from "../screens/FriendsScreen/FriendsScreen";
 import NotificationScreen from '../screens/NotificationScreen/NotificationScreen'
-import React from "react";
+import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
+import SearchScreen from "../screens/SearchScreen/SearchScreen";
 
 export const Tab = createBottomTabNavigator();
 
-export default function AppNavigator({ navigation }) {
+export default function TabNavigator({ navigation }) {
     return (
         <Tab.Navigator>
             <Tab.Screen name="Floor" component={FloorScreen} />

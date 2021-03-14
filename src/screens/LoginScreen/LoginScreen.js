@@ -1,8 +1,11 @@
-import React, { useContext, useState } from "react";
-import { Text, Image, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useDispatch, useSelector } from "react-redux";
+
 import { firebase } from "../../firebase/config";
-import { AuthContext } from "../../../App";
+import { login, logout } from "../../redux/slices/authSlice";
+import { loginPress } from "../../utilities/authUtls";
 import styles from "./styles";
 
 export default function LoginScreen({ navigation }) {
@@ -10,40 +13,9 @@ export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState("test@gmail.com");
     const [password, setPassword] = useState("qwerty1!");
     ///////////////////////////////////
-    const { user, setUser } = useContext(AuthContext);
+    const user = useSelector((state) => state.user.val);
+    const dispatch = useDispatch();
 
-    const onFooterLinkPress = () => {
-        navigation.navigate("Signup");
-    };
-
-    const onLoginPress = () => {
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then((response) => {
-                const uid = response.user.uid;
-                const usersRef = firebase.firestore().collection("users");
-
-                usersRef
-                    .doc(uid)
-                    .get()
-                    .then((firestoreDocument) => {
-                        if (!firestoreDocument.exists) {
-                            alert("User does not exist anymore.");
-                            return;
-                        }
-                        const user = firestoreDocument.data();
-                        setUser(user);
-                        navigation.navigate("AppHome", { user });
-                    })
-                    .catch((error) => {
-                        alert(error);
-                    });
-            })
-            .catch((error) => {
-                alert(error);
-            });
-    };
 
     return (
         <View style={styles.container}>
@@ -74,17 +46,21 @@ export default function LoginScreen({ navigation }) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
+                
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => onLoginPress()}
+                    onPress={() => loginPress(navigation, dispatch, email, password)}
                 >
                     <Text style={styles.buttonTitle}>Log in</Text>
                 </TouchableOpacity>
+
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>
                         Don't have an account?{" "}
                         <Text
-                            onPress={onFooterLinkPress}
+                            onPress={() => {
+                                navigation.navigate("Signup");
+                            }}
                             style={styles.footerLink}
                         >
                             Sign up
