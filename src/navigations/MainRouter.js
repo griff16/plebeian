@@ -2,7 +2,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { firebase } from "../firebase/config";
 import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import SignupScreen from "../screens/SignupScreen/SignupScreen";
 import { persistentLogin } from "../utilities/authUtls";
