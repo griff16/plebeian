@@ -3,7 +3,6 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useDispatch } from "react-redux";
 
-import { firebase } from "../../firebase/config";
 import { signupPress } from "../../utilities/authUtls";
 import styles from "./styles";
 

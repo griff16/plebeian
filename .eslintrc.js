@@ -15,13 +15,4 @@ module.exports = {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "react-native"
-    ],
-    "rules": {
-        "react/prop-types": [1, {
-            navigation: <ignore>,
-        }]
-    }
 };

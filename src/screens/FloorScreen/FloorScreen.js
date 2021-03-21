@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,6 +16,9 @@ export default function FloorScreen({ navigation }) {
         <View style={styles}>
             <Text>This is Floor Screen!</Text>
             <View>{user && <Text>Is Logged IN as: {user.email}</Text>}</View>
+
+            
+
 
             {/* this is sign out feature for debug purpose */}
             <TouchableOpacity

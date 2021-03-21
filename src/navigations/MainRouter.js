@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import SignupScreen from "../screens/SignupScreen/SignupScreen";
 import { persistentLogin } from "../utilities/authUtls";
+import DrawerNavigator from "./DrawerNavigator";
 import TabNavigator from "./TabNavigator";
 
 export default function MainRouter() {
@@ -21,7 +22,9 @@ export default function MainRouter() {
     return (
         <Stack.Navigator>
             {user ? (
-                <Stack.Screen name="AppHome" component={TabNavigator} />
+                <>
+                    <Stack.Screen name="AppHome" component={TabNavigator} />
+                </>
             ) : (
                 <>
                     <Stack.Screen name="Login" component={LoginScreen} />
